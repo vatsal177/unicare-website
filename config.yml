@@ -1,0 +1,34 @@
+backend:
+  name: github
+  # REQUIRED: replace with your actual GitHub username/org and repo name,
+  # e.g. "vatsal-raval/unicare-website" — the CMS won't work until this
+  # matches your real repository.
+  repo: OWNER/REPO
+  branch: main
+
+# Login is handled by GitHub itself (via GitHub OAuth, brokered through
+# Netlify's OAuth provider — see README-DEPLOY-AND-CMS.md for setup).
+# No password of any kind lives in this file or anywhere in this repo.
+# Only GitHub accounts you've explicitly added as repo collaborators
+# can log in and edit content.
+local_backend: false
+
+publish_mode: simple
+media_folder: "content/blog/images"
+public_folder: "/content/blog/images"
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "content/blog"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{title}} — {{date}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Short Excerpt (shown on the blog listing page)", name: "excerpt", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
