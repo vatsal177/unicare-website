@@ -1,0 +1,98 @@
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand" style="color:#fff;margin-bottom:14px">
+          <span class="mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2c4 5 7 9 7 13a7 7 0 1 1-14 0c0-4 3-8 7-13Z" fill="currentColor"/></svg></span>
+          Unicare Technologies
+        </div>
+        <p>Manufacturer of water and wastewater treatment plants for rural, municipal and industrial clients across India since 2000.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/UnicareTechnologies/" aria-label="Facebook">f</a>
+          <a href="https://twitter.com/unicaretech" aria-label="Twitter">x</a>
+          <a href="https://www.youtube.com/channel/UCbCtUOku-JqtnMeHvxSSAPw/featured" aria-label="YouTube">yt</a>
+          <a href="https://www.linkedin.com/company/unicare-technlogies-private-limited/" aria-label="LinkedIn">in</a>
+          <a href="https://wa.me/+919823009383" aria-label="WhatsApp">wa</a>
+        </div>
+      </div>
+      <div><h4>Company</h4><ul>
+        <li><a href="about-company-overview.html">Company Overview</a></li>
+        <li><a href="about-management.html">Management</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="about-partner.html">Associate &amp; Partners</a></li>
+      </ul></div>
+      <div><h4>Solutions</h4><ul>
+        <li><a href="solutions-rural.html">Rural</a></li>
+        <li><a href="solutions-metropolitan.html">Metropolitan</a></li>
+        <li><a href="solutions-industrial.html">Industrial</a></li>
+        <li><a href="technologies.html">Technologies</a></li>
+      </ul></div>
+      <div><h4>Contact</h4><ul>
+        <li><a href="tel:+919823009383">+91-982-3009-383</a></li>
+        <li><a href="mailto:info@unicarewater.com">info@unicarewater.com</a></li>
+        <li>Gate No. 1327, Vrindavan Park,<br>Wagholi, Pune, Maharashtra 412207</li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Unicare Technologies Pvt. Ltd. All rights reserved.</span>
+      <span><a href="contact.html">Our Locations</a> &middot; <a href="contact.html">Enquiry Form</a></span>
+    </div>
+  </div>
+</footer>
+<div class="mobile-bar">
+  <div class="wrap">
+    <a href="tel:+919823009383" class="btn btn-ghost">Call</a>
+    <a href="https://wa.me/+919823009383" class="btn btn-ghost">WhatsApp</a>
+    <a href="contact.html" class="btn btn-primary">Get a Quote</a>
+  </div>
+</div>
+<script>
+  var burger = document.querySelector('.hamburger');
+  var nav = document.querySelector('nav.primary');
+  if(burger && nav){
+    burger.addEventListener('click', function(){
+      var expanded = burger.getAttribute('aria-expanded') === 'true';
+      burger.setAttribute('aria-expanded', String(!expanded));
+      nav.style.display = expanded ? 'none' : 'block';
+      if(!expanded){
+        nav.style.position='fixed'; nav.style.top='0'; nav.style.left='0'; nav.style.right='0'; nav.style.bottom='0';
+        nav.style.background='#fff'; nav.style.zIndex='200'; nav.style.padding='24px'; nav.style.overflowY='auto';
+        var ul = nav.querySelector('ul');
+        ul.style.flexDirection='column'; ul.style.alignItems='stretch';
+      }
+    });
+  }
+  function openGmailCompose(form){
+    var data = new FormData(form);
+    var name = data.get('name') || [data.get('first_name'), data.get('last_name')].filter(Boolean).join(' ').trim();
+    var email = data.get('email') || '';
+    var phone = data.get('phone') || '';
+    var sector = data.get('sector') || '';
+    var message = data.get('message') || '';
+    var context = form.getAttribute('data-context') || '';
+    var subject = 'Website Enquiry' + (sector ? ' \u2014 ' + sector : '') + (context ? ' \u2014 ' + context : '');
+    var bodyLines = [
+      'Name: ' + (name || '-'),
+      'Phone: ' + (phone || '-'),
+      'Email: ' + (email || '-'),
+      'Sector: ' + (sector || '-'),
+      '',
+      'Message:',
+      message || '-',
+      '',
+      'Sent via unicarewater.com enquiry form' + (context ? ' (' + context + ')' : '')
+    ];
+    var body = bodyLines.join('\n');
+    var url = 'https://mail.google.com/mail/?view=cm&fs=1&to=info@unicarewater.com&su=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    window.open(url, '_blank');
+  }
+  document.querySelectorAll('form').forEach(function(f){
+    f.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (typeof f.reportValidity === 'function' && !f.reportValidity()) { return; }
+      openGmailCompose(f);
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+[build]
+  command = "npm install && npm run build"
+  publish = "."
+
+# Keeps old WordPress-style product URLs working if anything still links to them.
+# (Safe to leave even if unused.)
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
