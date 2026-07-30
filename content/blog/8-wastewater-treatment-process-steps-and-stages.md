@@ -42,4 +42,4 @@ Which technology handles steps 4 to 6 (extended aeration, SBR, MBBR, MBR or SAFF
 
 ![]()
 
-![](/content/blog/images/screenshot-2026-07-30-at-11.05.11 am.png)
+![]()
