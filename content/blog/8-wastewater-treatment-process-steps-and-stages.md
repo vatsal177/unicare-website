@@ -1,9 +1,9 @@
 ---
-title: "8 Wastewater Treatment Process Steps & Stages"
+title: 8 Wastewater Treatment Process Steps & Stages
 date: 2023-02-20
-excerpt: "The eight steps wastewater typically passes through, from screening to final discharge or reuse."
+excerpt: The eight steps wastewater typically passes through, from screening to
+  final discharge or reuse.
 ---
-
 Wastewater treatment is a multi-stage process that removes contaminants from domestic or industrial wastewater before it is discharged or reused. Below is the typical eight-step sequence.
 
 ## 1. Screening
@@ -39,3 +39,7 @@ Chlorination, UV or ozone treatment inactivates remaining pathogens before disch
 Sludge collected from the primary and secondary stages is thickened, dewatered and disposed of or reused, for example as compost, depending on local regulation.
 
 Which technology handles steps 4 to 6 (extended aeration, SBR, MBBR, MBR or SAFF, for example) depends on the plant's space, load and discharge requirements. See our [Technologies](/technologies.html) page for the options Unicare offers.
+
+![]()
+
+![]()
