@@ -3,7 +3,7 @@ backend:
   # REQUIRED: replace with your actual GitHub username/org and repo name,
   # e.g. "vatsal-raval/unicare-website" — the CMS won't work until this
   # matches your real repository.
-  repo: vatsal177/unicare-website
+  repo: OWNER/REPO
   branch: main
 
 # Login is handled by GitHub itself (via GitHub OAuth, brokered through
