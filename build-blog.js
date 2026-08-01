@@ -88,6 +88,21 @@ function fmtDate(d) {
   return date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 }
 
+function extractYouTubeId(url) {
+  if (!url) return null;
+  const m = String(url).match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([a-zA-Z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+
+function videoEmbed(url, title) {
+  const id = extractYouTubeId(url);
+  if (!id) return "";
+  return `<div class="video-embed" style="margin-bottom:28px">
+  <iframe src="https://www.youtube-nocookie.com/embed/${id}" title="${escapeHtml(title || "Video")}" loading="lazy"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>`;
+}
+
 // ---- Load all posts ----
 if (!fs.existsSync(CONTENT_DIR)) {
   console.error(`No content directory at ${CONTENT_DIR}, skipping blog build.`);
@@ -104,6 +119,7 @@ const posts = files.map((f) => {
     title: data.title || slug,
     date: data.date || "",
     excerpt: data.excerpt || "",
+    video: data.video || "",
     html: marked.parse(content),
   };
 });
@@ -124,7 +140,7 @@ posts.forEach((post) => {
   body += `<section class="bg-white">
   <div class="wrap">
     <div class="content-grid">
-      <article class="prose">${post.html}</article>
+      <article class="prose">${videoEmbed(post.video, post.title)}${post.html}</article>
       <aside>
         <div class="side-card">
           <h4>Get a quotation</h4>
@@ -183,3 +199,68 @@ const indexHtml = page(
 fs.writeFileSync(path.join(OUT_DIR, "blog.html"), indexHtml);
 
 console.log(`Built blog.html + ${posts.length} blog post page(s) from content/blog/*.md`);
+
+// =====================================================================
+// ACHIEVEMENTS — regenerates achievements.html from content/achievements/*.md
+// Same pattern as the blog: Decap CMS commits a new/edited/deleted
+// achievement -> this script rebuilds achievements.html -> Netlify redeploys.
+// =====================================================================
+const ACH_DIR = path.join(ROOT, "content", "achievements");
+
+if (fs.existsSync(ACH_DIR)) {
+  const achFiles = fs.readdirSync(ACH_DIR).filter((f) => f.endsWith(".md"));
+  const achievements = achFiles.map((f) => {
+    const raw = fs.readFileSync(path.join(ACH_DIR, f), "utf8");
+    const { data, content } = matter(raw);
+    return {
+      title: data.title || f,
+      partner: data.partner || "",
+      plants_installed: data.plants_installed || "",
+      people_impacted: data.people_impacted || "",
+      litres_per_day: data.litres_per_day || "",
+      order: typeof data.order === "number" ? data.order : 999,
+      html: marked.parse(content),
+    };
+  });
+  achievements.sort((a, b) => a.order - b.order);
+
+  function statBlock(value, label) {
+    if (!value) return "";
+    return `<div><span class="num mono">${escapeHtml(value)}</span><span class="label">${label}</span></div>`;
+  }
+
+  const cards = achievements.map((a) => `<article class="tech-card">
+  ${a.partner ? `<span class="badge-partner">${escapeHtml(a.partner)}</span>` : ""}
+  <h3>${escapeHtml(a.title)}</h3>
+  <div class="stat-row">
+    ${statBlock(a.plants_installed, "Plants installed")}
+    ${statBlock(a.people_impacted, "People impacted")}
+    ${statBlock(a.litres_per_day, "Litres purified / day")}
+  </div>
+  <div class="prose">${a.html}</div>
+</article>`).join("");
+
+  let achBody = pageHero(
+    [["Home", "index.html"], ["Achievements", null]],
+    "25 years of manufacturing",
+    "Achievements",
+    "Real projects, real partners, real impact — a selection of Unicare's deployments across India."
+  );
+  achBody += `<section class="bg-white">
+  <div class="wrap">
+    <div class="prose" style="max-width:100%">${cards}</div>
+  </div>
+</section>`;
+  achBody += ctaBand();
+
+  const achHtml = page(
+    "Achievements | Unicare Technologies Pvt. Ltd.",
+    "Real deployments and measurable impact: community water ATMs, fluoride and iron removal plants, disaster response and more.",
+    achBody,
+    "achievements.html"
+  );
+  fs.writeFileSync(path.join(OUT_DIR, "achievements.html"), achHtml);
+  console.log(`Built achievements.html from ${achievements.length} achievement(s)`);
+} else {
+  console.log("No content/achievements directory found, skipping achievements build.");
+}

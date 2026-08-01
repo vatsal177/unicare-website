@@ -1,9 +1,6 @@
 backend:
   name: github
-  # REQUIRED: replace with your actual GitHub username/org and repo name,
-  # e.g. "vatsal-raval/unicare-website" — the CMS won't work until this
-  # matches your real repository.
-  repo: OWNER/REPO
+  repo: vatsal177/unicare-website
   branch: main
 
 # Login is handled by GitHub itself (via GitHub OAuth, brokered through
@@ -31,4 +28,23 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
       - { label: "Short Excerpt (shown on the blog listing page)", name: "excerpt", widget: "text" }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Video URL (optional — paste a YouTube link to embed it at the top of the post)", name: "video", widget: "string", required: false }
+      - { label: "Body", name: "body", widget: "markdown", media_folder: "/content/blog/images", public_folder: "/content/blog/images" }
+
+  - name: "achievements"
+    label: "Achievements"
+    folder: "content/achievements"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{title}}"
+    sortable_fields: ["order", "title"]
+    fields:
+      - { label: "Title (e.g. 'Organisation Name — Project')", name: "title", widget: "string" }
+      - { label: "Partner / Client Name", name: "partner", widget: "string", required: false }
+      - { label: "Display Order (lower numbers show first)", name: "order", widget: "number", default: 99 }
+      - { label: "Plants Installed", name: "plants_installed", widget: "string", required: false, hint: "e.g. '900+' or '3 units'" }
+      - { label: "People Impacted", name: "people_impacted", widget: "string", required: false, hint: "e.g. '6 Million+' — leave blank if not applicable" }
+      - { label: "Litres Purified / Day", name: "litres_per_day", widget: "string", required: false, hint: "e.g. '75 Million+' — leave blank if not applicable" }
+      - { label: "Description", name: "body", widget: "markdown", media_folder: "/content/blog/images", public_folder: "/content/blog/images" }
