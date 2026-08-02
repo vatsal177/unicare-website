@@ -11,8 +11,8 @@ backend:
 local_backend: false
 
 publish_mode: simple
-media_folder: "content/blog/images"
-public_folder: "/content/blog/images"
+media_folder: "assets/images"
+public_folder: "/assets/images"
 
 collections:
   - name: "blog"
