@@ -60,8 +60,11 @@ function breadcrumb(trail) {
   return `<nav class="breadcrumb" aria-label="Breadcrumb">${parts.join(" ")}</nav>`;
 }
 
-function pageHero(trail, badge, h1, lead) {
-  return `<section class="page-hero">
+function pageHero(trail, badge, h1, lead, imageSlug) {
+  const style = imageSlug
+    ? ` style="background-image:linear-gradient(rgba(1,27,56,.82),rgba(1,27,56,.88)), url('/assets/images/${imageSlug}.jpg');background-size:cover;background-position:center"`
+    : "";
+  return `<section class="page-hero"${style}>
   <div class="wrap">
     ${breadcrumb(trail)}
     <span class="sector-badge">${badge}</span>
@@ -181,7 +184,8 @@ let indexBody = pageHero(
   [["Home", "index.html"], ["Blog", null]],
   "Resources",
   "Blog",
-  "Articles from Unicare Technologies on water and wastewater treatment processes, plant design and real installation case studies."
+  "Articles from Unicare Technologies on water and wastewater treatment processes, plant design and real installation case studies.",
+  "blog"
 );
 indexBody += `<section class="bg-white">
   <div class="wrap">
@@ -244,7 +248,8 @@ if (fs.existsSync(ACH_DIR)) {
     [["Home", "index.html"], ["Achievements", null]],
     "25 years of manufacturing",
     "Achievements",
-    "Real projects, real partners, real impact — a selection of Unicare's deployments across India."
+    "Real projects, real partners, real impact — a selection of Unicare's deployments across India.",
+    "achievements"
   );
   achBody += `<section class="bg-white">
   <div class="wrap">
