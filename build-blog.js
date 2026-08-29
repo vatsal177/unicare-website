@@ -74,7 +74,7 @@ function pageHero(trail, badge, h1, lead, imageSlug) {
 </section>`;
 }
 
-function ctaBand(heading = "Request a quotation", sub = "Tell us your sector and requirement — our engineering team responds directly.", ctaText = "Get a Quote") {
+function ctaBand(heading = "Request a quotation", sub = "Tell us your sector and requirement — our engineering team responds directly.", ctaText = "Contact Us") {
   return `<section class="tight">
   <div class="wrap">
     <div class="cta-band">
@@ -137,7 +137,8 @@ posts.forEach((post) => {
     [["Home", "index.html"], ["Blog", "blog.html"], [escapeHtml(post.title), null]],
     fmtDate(post.date),
     escapeHtml(post.title),
-    escapeHtml(post.excerpt)
+    escapeHtml(post.excerpt),
+    `blog-${post.slug}`
   );
 
   body += `<section class="bg-white">
@@ -148,7 +149,7 @@ posts.forEach((post) => {
         <div class="side-card">
           <h4>Get a quotation</h4>
           <p style="font-size:14px;margin-bottom:16px">Have a requirement related to this article? Our team can help size the right system.</p>
-          <a href="contact.html" class="btn btn-primary btn-block">Get a Quote</a>
+          <a href="contact.html" class="btn btn-primary btn-block">Contact Us</a>
         </div>
         <div class="side-card">
           <h4>More articles</h4>
