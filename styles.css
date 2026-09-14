@@ -811,3 +811,43 @@ footer{background:var(--ink);color:#a9c6c9;padding:64px 0 0}
     max-height: 210px !important;
   }
 }
+
+/* ---------- DESKTOP HEADER FIX ---------- */
+
+@media (min-width: 861px) {
+
+  .nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 20px;
+  }
+
+  .nav-row .brand {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .nav-row nav.primary {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .nav-row nav.primary > ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+
+  .nav-row .header-actions {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+  }
+
+}
