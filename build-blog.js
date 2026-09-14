@@ -172,7 +172,7 @@ posts.forEach((post) => {
 
 // ---- Build blog index ----
 const cards = posts.map((p) => `<article class="blog-card">
-  <div class="thumb" style="background-image:linear-gradient(135deg,#0552A5,#011B38), url('/assets/images/blog-${p.slug}.jpg')"></div>
+  <div class="thumb" style="background-image:linear-gradient(135deg,rgba(5,82,165,.35),rgba(1,27,56,.65)), url('/assets/images/blog-${p.slug}.jpg')"></div>
   <div class="body">
     <div class="meta">Unicare &middot; ${fmtDate(p.date)}</div>
     <h3>${escapeHtml(p.title)}</h3>
