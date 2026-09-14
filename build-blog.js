@@ -236,7 +236,7 @@ if (fs.existsSync(ACH_DIR)) {
   }
 
   const cards = achievements.map((a) => `<article class="tech-card">
-  <div class="thumb" aria-hidden="true" style="aspect-ratio:16/9;border-radius:12px;margin-bottom:16px;background:linear-gradient(135deg,#e6eef9,#d2e0f3);background-size:cover;background-position:center;background-image:linear-gradient(135deg,#e6eef9,#d2e0f3), url('/assets/images/achievement-${a.slug}.jpg')"></div>
+  <div class="thumb" aria-hidden="true" style="aspect-ratio:16/9;border-radius:12px;margin-bottom:16px;background:linear-gradient(135deg,#e6eef9,#d2e0f3);background-size:cover;background-position:center;background-image:linear-gradient(135deg,rgba(230,238,249,.15),rgba(210,224,243,.25)), url('/assets/images/achievement-${a.slug}.jpg')"></div>
   ${a.partner ? `<span class="badge-partner">${escapeHtml(a.partner)}</span>` : ""}
   <h3>${escapeHtml(a.title)}</h3>
   <div class="stat-row">
