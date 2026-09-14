@@ -740,3 +740,74 @@ footer{background:var(--ink);color:#a9c6c9;padding:64px 0 0}
   .btn-lg{padding:13px 20px;font-size:15px}
 }
 
+.achievements-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 24px !important;
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  align-items: start !important;
+}
+
+.achievements-grid > .tech-card {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 20px !important;
+  box-sizing: border-box !important;
+}
+
+.achievements-grid > .tech-card .thumb {
+  width: 100% !important;
+  height: 180px !important;
+  max-height: 180px !important;
+  aspect-ratio: auto !important;
+  margin-bottom: 14px !important;
+  border-radius: 10px !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.achievements-grid > .tech-card h3 {
+  font-size: 18px !important;
+  line-height: 1.3 !important;
+  margin: 8px 0 14px !important;
+}
+
+.achievements-grid > .tech-card .stat-row {
+  margin: 12px 0 !important;
+}
+
+.achievements-grid > .tech-card > .prose {
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+}
+
+.achievements-grid > .tech-card > .prose p {
+  margin: 0 !important;
+}
+
+/* Tablet */
+@media (max-width: 1000px) {
+  .achievements-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 650px) {
+  .achievements-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .achievements-grid > .tech-card .thumb {
+    height: 210px !important;
+    max-height: 210px !important;
+  }
+}
