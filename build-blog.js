@@ -146,11 +146,11 @@ posts.forEach((post) => {
     <div class="content-grid">
       <article class="prose">${videoEmbed(post.video, post.title)}${post.html}</article>
       <aside>
-        <div class="side-card">
+        <!-- <div class="side-card">
           <h4>Get a quotation</h4>
           <p style="font-size:14px;margin-bottom:16px">Have a requirement related to this article? Our team can help size the right system.</p>
           <a href="contact.html" class="btn btn-primary btn-block">Contact Us</a>
-        </div>
+        </div> -->
         <div class="side-card">
           <h4>More articles</h4>
           <ul>${sideLinks}</ul>
