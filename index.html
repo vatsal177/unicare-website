@@ -57,7 +57,15 @@
 <header class="main">
   <div class="nav-row wrap">
     <a href="index.html" class="brand">
-      <span class="mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2c4 5 7 9 7 13a7 7 0 1 1-14 0c0-4 3-8 7-13Z" fill="currentColor"/></svg></span>
+      <span>
+    <img
+      src="colour-logo-unicare.png"
+      alt="UNiCARE"
+      width="48"
+      height="48"
+      style="width:48px;height:48px;object-fit:contain;display:block;"
+    />
+      </span>
       Unicare Technologies
     </a>
     <nav class="primary" aria-label="Primary">
@@ -108,6 +116,7 @@
   </div>
 </header>
 <main id="main">
+<div class="hero-stage">
 <section class="hero" style="padding:0">
     <div class="hero-caustics" aria-hidden="true">
       <div class="caustic caustic-1"></div>
@@ -143,9 +152,10 @@
       <path d="M0 40 C 200 10, 400 60, 600 34 S 1000 8, 1200 36 S 1600 62, 1800 34 S 2200 8, 2400 36 L2400 64 L0 64 Z" fill="#FFFFFF"/>
     </svg>
     <div class="wrap">
-      <div>
+      <div class="hero-text-col">
         <span class="eyebrow">Manufacturing since 2000 &middot; Pune, India</span>
         <h1 class="hero-h1-lg"><span class="hl-light-mark">Water &amp; wastewater treatment plants</span>, engineered for <span class="hl-light">rural, municipal and industrial India</span></h1>
+        <p class="lead hero-lead-lg">Unicare Technologies <span class="hl-light">designs, manufactures, installs and commissions</span> RO plants, sewage &amp; effluent treatment systems, and filtration equipment &mdash; built to your site's raw water and load conditions.</p>
         <div class="hero-ctas">
           <a href="contact.html" class="btn btn-primary btn-lg">Contact Us</a>
           <a href="#solutions" class="btn btn-ghost btn-lg" style="border-color:rgba(255,255,255,.35);color:#fff">View Solutions by Sector</a>
@@ -154,7 +164,6 @@
           <div><span class="num">25+</span><span class="label">Years in water treatment</span></div>
           <div><span class="num">3</span><span class="label">Sectors served</span></div>
           <div><span class="num">24</span><span class="label">Plant &amp; system types</span></div>
-          <div><span class="num mono">ISO 9001</span><span class="label">Certified manufacturer</span></div>
         </div>
       </div>
       <div class="hero-gallery-wrap">
@@ -171,6 +180,7 @@
       </div>
     </div>
   </section>
+</div>
 
   <section class="hero-video-section">
     <div class="video-embed video-embed-wide">
@@ -192,21 +202,24 @@
         <p>Rural water schemes, city and industrial utilities each have different raw water, budget and regulatory constraints. Every product is grouped by the sector it's built for.</p>
       </div>
       <div class="segments">
-        <article class="segment-card">
+        <article class="segment-card tilt-card"><div class="tilt-shine" aria-hidden="true"></div>
+          <div class="card-photo" aria-hidden="true" style="background-image:linear-gradient(135deg,#e6eef9,#d2e0f3), url('/assets/images/solutions-rural.jpg')"></div>
           <div class="icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12l9-8 9 8M5 10v10h14V10"/></svg></div>
           <span class="count">11 products</span>
           <h3>Rural Application</h3>
           <p>RO plants, fluoride/iron/arsenic removal, water ATMs and softeners for gram panchayats and rural water schemes.</p>
           <a href="solutions-rural.html" class="more">Explore rural solutions &rarr;</a>
         </article>
-        <article class="segment-card">
+        <article class="segment-card tilt-card"><div class="tilt-shine" aria-hidden="true"></div>
+          <div class="card-photo" aria-hidden="true" style="background-image:linear-gradient(135deg,#e6eef9,#d2e0f3), url('/assets/images/solutions-metropolitan.jpg')"></div>
           <div class="icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M8 8h8M8 12h8M8 16h4"/></svg></div>
           <span class="count">9 products</span>
           <h3>Metropolitan Application</h3>
           <p>Sewerage &amp; effluent treatment plants, ultra-filtration, water kiosks and dialysis RO for municipal and institutional use.</p>
           <a href="solutions-metropolitan.html" class="more">Explore metropolitan solutions &rarr;</a>
         </article>
-        <article class="segment-card">
+        <article class="segment-card tilt-card"><div class="tilt-shine" aria-hidden="true"></div>
+          <div class="card-photo" aria-hidden="true" style="background-image:linear-gradient(135deg,#e6eef9,#d2e0f3), url('/assets/images/solutions-industrial.jpg')"></div>
           <div class="icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 21V9l6-4 6 4v12M10 21v-6h4v6"/></svg></div>
           <span class="count">5 products</span>
           <h3>Industrial Application</h3>
@@ -245,7 +258,6 @@
         <div><span class="num counter" data-target="900" data-suffix="+" style="color:var(--aqua-500)">0</span><span class="label" style="color:var(--steel-400)">Community plants installed</span></div>
         <div><span class="num counter" data-target="75" data-suffix="M+" style="color:var(--aqua-500)">0</span><span class="label" style="color:var(--steel-400)">Litres purified daily</span></div>
         <div><span class="num counter" data-target="11" data-suffix="M+" style="color:var(--aqua-500)">0</span><span class="label" style="color:var(--steel-400)">People reached</span></div>
-        <div><span class="num" style="color:var(--aqua-500)">ISO 9001</span><span class="label" style="color:var(--steel-400)">Certified manufacturer</span></div>
       </div>
       <div style="text-align:center;margin-top:28px">
         <a href="achievements.html" class="btn btn-ghost">See our achievements &rarr;</a>
@@ -347,12 +359,12 @@
     </div>
   </div>
 </footer>
-<div class="mobile-bar">
+<!-- <div class="mobile-bar">
   <div class="wrap">
     <a href="https://wa.me/+919823009383" class="btn btn-ghost">WhatsApp</a>
     <a href="contact.html" class="btn btn-primary">Contact Us</a>
   </div>
-</div>
+</div> -->
 <script>
   (function(){
     var burger = document.querySelector('.hamburger');
@@ -541,6 +553,96 @@
       if (e.touches && e.touches[0]) handleMove(e.touches[0].clientX, e.touches[0].clientY);
     }, {passive:true});
     gallery.addEventListener('touchend', resetTiles);
+  })();
+
+  // 3D mouse-tracked tilt for cards (segment cards on homepage)
+  (function(){
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var tiltCards = document.querySelectorAll('.tilt-card');
+    if (!tiltCards.length) return;
+    tiltCards.forEach(function(card){
+      var rect;
+      card.addEventListener('mouseenter', function(){ rect = card.getBoundingClientRect(); });
+      card.addEventListener('mousemove', function(e){
+        if (!rect) rect = card.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width;
+        var y = (e.clientY - rect.top) / rect.height;
+        var rotateY = (x - 0.5) * 14;
+        var rotateX = (0.5 - y) * 14;
+        card.style.transform = 'perspective(800px) rotateX(' + rotateX.toFixed(2) + 'deg) rotateY(' + rotateY.toFixed(2) + 'deg) scale(1.03)';
+        card.style.setProperty('--shine-x', (x * 100).toFixed(1) + '%');
+        card.style.setProperty('--shine-y', (y * 100).toFixed(1) + '%');
+      });
+      card.addEventListener('mouseleave', function(){
+        card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
+      });
+    });
+  })();
+
+  // Apple-style pinned scroll sequence: the hero stays fixed on screen
+  // (position:sticky, desktop only — see CSS) while .hero-stage provides
+  // extra scroll runway. Progress is derived from how far we've scrolled
+  // through that runway, and drives a genuinely dramatic 3D transform on
+  // the gallery — visible because the element isn't simultaneously
+  // scrolling off-screen, unlike a plain parallax effect.
+  (function(){
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var stage = document.querySelector('.hero-stage');
+    var galleryCanvas = document.querySelector('.hero-gallery');
+    var textCol = document.querySelector('.hero-text-col');
+    var caustics = document.querySelector('.hero-caustics');
+    var bubbles = document.querySelector('.hero-bubbles');
+    var flow = document.querySelector('.hero-flow');
+    if (!stage || reduceMotion) return;
+
+    var ticking = false;
+
+    function resetAll(){
+      if (galleryCanvas) galleryCanvas.style.transform = '';
+      if (textCol) { textCol.style.opacity = ''; textCol.style.transform = ''; }
+      if (caustics) caustics.style.transform = '';
+      if (bubbles) bubbles.style.transform = '';
+      if (flow) flow.style.transform = '';
+    }
+
+    function update(){
+      if (window.innerWidth < 1024) { resetAll(); ticking = false; return; }
+
+      var rect = stage.getBoundingClientRect();
+      var viewportHeight = window.innerHeight;
+      var scrollableDistance = stage.offsetHeight - viewportHeight;
+      if (scrollableDistance <= 0) { ticking = false; return; }
+
+      var scrolledIntoStage = -rect.top;
+      var progress = Math.min(Math.max(scrolledIntoStage / scrollableDistance, 0), 1);
+
+      // Gallery: a full, unmistakable 3D turn + zoom as you scroll through the pin
+      if (galleryCanvas) {
+        var rotY = progress * 26;
+        var rotX = progress * -9;
+        var scale = 1 + progress * 0.16;
+        galleryCanvas.style.transform =
+          'perspective(1400px) rotateY(' + rotY.toFixed(2) + 'deg) rotateX(' + rotX.toFixed(2) + 'deg) scale(' + scale.toFixed(3) + ')';
+      }
+      // Text column hands off — fades and lifts away as the gallery takes over
+      if (textCol) {
+        var textProgress = Math.min(progress / 0.7, 1);
+        textCol.style.opacity = String(1 - textProgress * 0.85);
+        textCol.style.transform = 'translateY(' + (-textProgress * 50).toFixed(1) + 'px)';
+      }
+      // Background depth layers continue drifting at different rates
+      if (caustics) caustics.style.transform = 'translateY(' + (progress * 90).toFixed(1) + 'px)';
+      if (bubbles) bubbles.style.transform = 'translateY(' + (progress * -60).toFixed(1) + 'px)';
+      if (flow) flow.style.transform = 'translateY(' + (progress * 45).toFixed(1) + 'px)';
+
+      ticking = false;
+    }
+    function onScroll(){
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    window.addEventListener('resize', onScroll, {passive:true});
+    update();
   })();
 </script>
 </body>

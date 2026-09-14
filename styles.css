@@ -222,11 +222,16 @@ li.has-simple:hover .mega-simple, li.has-simple:focus-within .mega-simple{
 }
 
 /* ---------- HERO (home) ---------- */
+.hero-stage{position:relative}
 .hero{
   position:relative;overflow:hidden;color:#e8f4f5;
   background:linear-gradient(135deg, #011B38 0%, #04295A 30%, #043D7A 55%, #011B38 100%);
   background-size:300% 300%;
   animation:hero-gradient-drift 22s ease-in-out infinite;
+}
+@media (min-width:1024px){
+  .hero-stage{height:210vh}
+  .hero{position:sticky;top:0}
 }
 @keyframes hero-gradient-drift{
   0%{background-position:0% 30%}
@@ -342,7 +347,7 @@ li.has-simple:hover .mega-simple, li.has-simple:focus-within .mega-simple{
 
 /* ---------- MOBILE NAV DRAWER (rebuilt) ---------- */
 .nav-backdrop{
-  position:fixed;inset:0;background:rgba(1,27,56,.5);z-index:190;
+  position:fixed;inset:0;background:rgba(1,27,56,.5);z-index:90;
   opacity:0;visibility:hidden;transition:opacity .28s ease, visibility .28s;
 }
 .nav-backdrop.visible{opacity:1;visibility:visible}
@@ -354,6 +359,7 @@ li.has-simple:hover .mega-simple, li.has-simple:focus-within .mega-simple{
 .nav-close:hover{background:var(--paper-50);transform:rotate(90deg)}
 
 @media (max-width:860px){
+  .header-actions .btn-primary{display:none}
   nav.primary{
     position:fixed;top:0;right:0;bottom:0;width:min(340px,86vw);
     background:#fff;z-index:200;margin:0;
@@ -468,7 +474,11 @@ section.tight{padding:64px 0}
   background:#fff;border:1px solid var(--line);border-radius:16px;padding:32px 26px;position:relative;
   transition:transform .15s ease, box-shadow .15s ease;
 }
-.segment-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.segment-card:hover:not(.tilt-card){transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.segment-card .card-photo{
+  aspect-ratio:3/2;margin:-32px -26px 22px;border-radius:16px 16px 0 0;
+  background:linear-gradient(135deg,#e6eef9,#d2e0f3);background-size:cover;background-position:center;
+}
 .segment-card .icon{
   width:52px;height:52px;border-radius:12px;background:var(--paper-50);display:flex;align-items:center;
   justify-content:center;color:var(--teal-700);margin-bottom:18px;
@@ -482,7 +492,8 @@ section.tight{padding:64px 0}
 .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .product-card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .15s ease,transform .15s ease}
 .product-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
-.product-card .thumb{aspect-ratio:4/3;background:linear-gradient(135deg,#e6eef9,#d2e0f3);display:flex;align-items:center;justify-content:center;color:var(--teal-700)}
+.product-card .thumb{aspect-ratio:4/3;background:linear-gradient(135deg,#e6eef9,#d2e0f3);background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;color:var(--teal-700)}
+.product-card .thumb svg{opacity:.9}
 .product-card .body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
 .product-card .tag{font-family:'IBM Plex Mono';font-size:12.9px;text-transform:uppercase;letter-spacing:.06em;color:var(--teal-700);background:#e6eef9;padding:4px 9px;border-radius:6px;align-self:flex-start;margin-bottom:12px}
 .product-card h3{font-size:19px;margin-bottom:8px}
@@ -545,7 +556,7 @@ section.tight{padding:64px 0}
 /* ---------- BLOG ---------- */
 .blog-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
 .blog-card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
-.blog-card .thumb{aspect-ratio:16/9;background:linear-gradient(135deg,#0552A5,#011B38)}
+.blog-card .thumb{aspect-ratio:16/9;background:linear-gradient(135deg,#0552A5,#011B38);background-size:cover;background-position:center}
 .blog-card .body{padding:22px}
 .blog-card .meta{font-size:14px;color:var(--steel-400);margin-bottom:8px;font-family:'IBM Plex Mono'}
 .blog-card h3{font-size:20.2px;margin-bottom:10px}
@@ -637,6 +648,7 @@ footer{background:var(--ink);color:#a9c6c9;padding:64px 0 0}
   section{padding:48px 0}
   section.tight{padding:36px 0}
   .segment-card, .product-card .body, .service, .tech-card, .testimonial, .contact-form{padding:20px}
+  .segment-card .card-photo{margin:-20px -20px 18px}
   .section-head{margin-bottom:32px}
   .mobile-bar{display:block}
   body{padding-bottom:64px}
@@ -652,8 +664,12 @@ footer{background:var(--ink);color:#a9c6c9;padding:64px 0 0}
 }
 
 /* Scroll-reveal (JS toggles .is-visible via IntersectionObserver) */
-.reveal-init{opacity:0;transform:translateY(22px);transition:opacity .65s cubic-bezier(.2,.65,.3,1), transform .65s cubic-bezier(.2,.65,.3,1)}
-.reveal-init.is-visible{opacity:1;transform:translateY(0)}
+.reveal-init{
+  opacity:0;transform:perspective(1000px) rotateX(-10deg) translateY(30px) scale(.97);
+  transform-origin:center bottom;
+  transition:opacity .7s cubic-bezier(.2,.65,.3,1), transform .7s cubic-bezier(.2,.65,.3,1);
+}
+.reveal-init.is-visible{opacity:1;transform:perspective(1000px) rotateX(0) translateY(0) scale(1)}
 
 /* Shimmer sweep across primary buttons on hover */
 .btn-primary{position:relative;overflow:hidden;isolation:isolate}
@@ -678,7 +694,20 @@ footer{background:var(--ink);color:#a9c6c9;padding:64px 0 0}
 .segment-card, .product-card, .blog-card, .tech-card, .testimonial{
   transition:transform .3s cubic-bezier(.2,.7,.3,1), box-shadow .3s cubic-bezier(.2,.7,.3,1);
 }
-.segment-card:hover, .product-card:hover{transform:translateY(-6px) scale(1.01)}
+.segment-card:hover:not(.tilt-card), .product-card:hover{transform:translateY(-6px) scale(1.01)}
+
+/* 3D mouse-tracked tilt — cursor position drives real-time rotateX/rotateY */
+.tilt-card{
+  transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.7,.3,1), box-shadow .3s ease;
+  will-change:transform;
+}
+.tilt-card:hover{box-shadow:var(--shadow-lg)}
+.tilt-card .tilt-shine{
+  position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(circle at var(--shine-x,50%) var(--shine-y,50%), rgba(255,255,255,.35), transparent 60%);
+  opacity:0;transition:opacity .3s ease;
+}
+.tilt-card:hover .tilt-shine{opacity:1}
 
 /* Smooth focus transitions on form fields */
 .field input, .field select, .field textarea{transition:background .18s ease, border-color .18s ease, box-shadow .18s ease}

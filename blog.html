@@ -92,7 +92,7 @@
 </section><section class="bg-white">
   <div class="wrap">
     <div class="blog-grid" style="grid-template-columns:repeat(2,1fr)"><article class="blog-card">
-  <div class="thumb"></div>
+  <div class="thumb" style="background-image:linear-gradient(135deg,#0552A5,#011B38), url('/assets/images/blog-what-is-the-process-of-an-iron-removal-plant.jpg')"></div>
   <div class="body">
     <div class="meta">Unicare &middot; March 1, 2023</div>
     <h3>What Is the Process of an Iron Removal Plant?</h3>
@@ -100,7 +100,7 @@
     <a href="blog-what-is-the-process-of-an-iron-removal-plant.html" class="readmore">Read more &rarr;</a>
   </div>
 </article><article class="blog-card">
-  <div class="thumb"></div>
+  <div class="thumb" style="background-image:linear-gradient(135deg,#0552A5,#011B38), url('/assets/images/blog-8-wastewater-treatment-process-steps-and-stages.jpg')"></div>
   <div class="body">
     <div class="meta">Unicare &middot; February 20, 2023</div>
     <h3>8 Wastewater Treatment Process Steps &amp; Stages</h3>
@@ -108,7 +108,7 @@
     <a href="blog-8-wastewater-treatment-process-steps-and-stages.html" class="readmore">Read more &rarr;</a>
   </div>
 </article><article class="blog-card">
-  <div class="thumb"></div>
+  <div class="thumb" style="background-image:linear-gradient(135deg,#0552A5,#011B38), url('/assets/images/blog-how-is-water-purified-in-a-water-treatment-plant.jpg')"></div>
   <div class="body">
     <div class="meta">Unicare &middot; February 20, 2023</div>
     <h3>How Is Water Purified in a Water Treatment Plant?</h3>
@@ -116,7 +116,7 @@
     <a href="blog-how-is-water-purified-in-a-water-treatment-plant.html" class="readmore">Read more &rarr;</a>
   </div>
 </article><article class="blog-card">
-  <div class="thumb"></div>
+  <div class="thumb" style="background-image:linear-gradient(135deg,#0552A5,#011B38), url('/assets/images/blog-sewage-treatment-plant-for-garden-process-and-advantages.jpg')"></div>
   <div class="body">
     <div class="meta">Unicare &middot; January 13, 2023</div>
     <h3>Sewage Treatment Plant for Garden: Process &amp; Advantages</h3>
@@ -124,7 +124,7 @@
     <a href="blog-sewage-treatment-plant-for-garden-process-and-advantages.html" class="readmore">Read more &rarr;</a>
   </div>
 </article><article class="blog-card">
-  <div class="thumb"></div>
+  <div class="thumb" style="background-image:linear-gradient(135deg,#0552A5,#011B38), url('/assets/images/blog-how-to-improve-wastewater-treatment.jpg')"></div>
   <div class="body">
     <div class="meta">Unicare &middot; November 25, 2022</div>
     <h3>How to Improve Wastewater Treatment?</h3>
@@ -132,7 +132,7 @@
     <a href="blog-how-to-improve-wastewater-treatment.html" class="readmore">Read more &rarr;</a>
   </div>
 </article><article class="blog-card">
-  <div class="thumb"></div>
+  <div class="thumb" style="background-image:linear-gradient(135deg,#0552A5,#011B38), url('/assets/images/blog-what-is-the-process-of-a-wastewater-treatment-plant.jpg')"></div>
   <div class="body">
     <div class="meta">Unicare &middot; October 5, 2022</div>
     <h3>What Is the Process of a Wastewater Treatment Plant?</h3>
@@ -385,6 +385,62 @@
       if (e.touches && e.touches[0]) handleMove(e.touches[0].clientX, e.touches[0].clientY);
     }, {passive:true});
     gallery.addEventListener('touchend', resetTiles);
+  })();
+
+  // 3D mouse-tracked tilt for cards (segment cards on homepage)
+  (function(){
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var tiltCards = document.querySelectorAll('.tilt-card');
+    if (!tiltCards.length) return;
+    tiltCards.forEach(function(card){
+      var rect;
+      card.addEventListener('mouseenter', function(){ rect = card.getBoundingClientRect(); });
+      card.addEventListener('mousemove', function(e){
+        if (!rect) rect = card.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width;
+        var y = (e.clientY - rect.top) / rect.height;
+        var rotateY = (x - 0.5) * 14;
+        var rotateX = (0.5 - y) * 14;
+        card.style.transform = 'perspective(800px) rotateX(' + rotateX.toFixed(2) + 'deg) rotateY(' + rotateY.toFixed(2) + 'deg) scale(1.03)';
+        card.style.setProperty('--shine-x', (x * 100).toFixed(1) + '%');
+        card.style.setProperty('--shine-y', (y * 100).toFixed(1) + '%');
+      });
+      card.addEventListener('mouseleave', function(){
+        card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
+      });
+    });
+  })();
+
+  // Scroll-linked 3D parallax depth for the hero (homepage only)
+  (function(){
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var hero = document.querySelector('.hero');
+    if (!hero) return;
+    var caustics = document.querySelector('.hero-caustics');
+    var bubbles = document.querySelector('.hero-bubbles');
+    var flow = document.querySelector('.hero-flow');
+    var galleryCanvas = document.querySelector('.hero-gallery');
+    var ticking = false;
+
+    function update(){
+      var heroHeight = hero.offsetHeight;
+      var scrolled = window.scrollY;
+      var progress = Math.min(Math.max(scrolled / heroHeight, 0), 1);
+
+      if (caustics) caustics.style.transform = 'translateY(' + (progress * 60).toFixed(1) + 'px)';
+      if (bubbles) bubbles.style.transform = 'translateY(' + (progress * -40).toFixed(1) + 'px)';
+      if (flow) flow.style.transform = 'translateY(' + (progress * 30).toFixed(1) + 'px)';
+      if (galleryCanvas) {
+        var rot = progress * 6;
+        var lift = progress * -24;
+        galleryCanvas.style.transform = 'perspective(1200px) rotateX(' + rot.toFixed(2) + 'deg) translateY(' + lift.toFixed(1) + 'px)';
+      }
+      ticking = false;
+    }
+    function onScroll(){
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
   })();
 </script>
 </body>

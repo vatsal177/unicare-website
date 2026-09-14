@@ -172,7 +172,7 @@ posts.forEach((post) => {
 
 // ---- Build blog index ----
 const cards = posts.map((p) => `<article class="blog-card">
-  <div class="thumb"></div>
+  <div class="thumb" style="background-image:linear-gradient(135deg,#0552A5,#011B38), url('/assets/images/blog-${p.slug}.jpg')"></div>
   <div class="body">
     <div class="meta">Unicare &middot; ${fmtDate(p.date)}</div>
     <h3>${escapeHtml(p.title)}</h3>
@@ -218,6 +218,7 @@ if (fs.existsSync(ACH_DIR)) {
     const raw = fs.readFileSync(path.join(ACH_DIR, f), "utf8");
     const { data, content } = matter(raw);
     return {
+      slug: f.replace(/\.md$/, ""),
       title: data.title || f,
       partner: data.partner || "",
       plants_installed: data.plants_installed || "",
@@ -235,6 +236,7 @@ if (fs.existsSync(ACH_DIR)) {
   }
 
   const cards = achievements.map((a) => `<article class="tech-card">
+  <div class="thumb" aria-hidden="true" style="aspect-ratio:16/9;border-radius:12px;margin-bottom:16px;background:linear-gradient(135deg,#e6eef9,#d2e0f3);background-size:cover;background-position:center;background-image:linear-gradient(135deg,#e6eef9,#d2e0f3), url('/assets/images/achievement-${a.slug}.jpg')"></div>
   ${a.partner ? `<span class="badge-partner">${escapeHtml(a.partner)}</span>` : ""}
   <h3>${escapeHtml(a.title)}</h3>
   <div class="stat-row">

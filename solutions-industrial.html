@@ -93,7 +93,7 @@
 </section><section class="bg-white">
   <div class="wrap">
     <div class="product-grid"><article class="product-card">
-  <div class="thumb" aria-hidden="true"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg></div>
+  <div class="thumb" aria-hidden="true" style="background-image:linear-gradient(135deg,#e6eef9,#d2e0f3), url('/assets/images/product-effluent-treatment-plant.jpg')"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg></div>
   <div class="body">
     <span class="tag">Metropolitan</span>
     <h3>Effluent Treatment Plant</h3>
@@ -102,7 +102,7 @@
     <a href="product-effluent-treatment-plant.html" class="link">Read specification &rarr;</a>
   </div>
 </article><article class="product-card">
-  <div class="thumb" aria-hidden="true"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg></div>
+  <div class="thumb" aria-hidden="true" style="background-image:linear-gradient(135deg,#e6eef9,#d2e0f3), url('/assets/images/product-electro-chlorinator.jpg')"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg></div>
   <div class="body">
     <span class="tag">Industrial</span>
     <h3>Electro Chlorinator</h3>
@@ -111,7 +111,7 @@
     <a href="product-electro-chlorinator.html" class="link">Read specification &rarr;</a>
   </div>
 </article><article class="product-card">
-  <div class="thumb" aria-hidden="true"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg></div>
+  <div class="thumb" aria-hidden="true" style="background-image:linear-gradient(135deg,#e6eef9,#d2e0f3), url('/assets/images/product-package-drinking-water-plant.jpg')"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg></div>
   <div class="body">
     <span class="tag">Industrial</span>
     <h3>Package Drinking Water Plant</h3>
@@ -120,7 +120,7 @@
     <a href="product-package-drinking-water-plant.html" class="link">Read specification &rarr;</a>
   </div>
 </article><article class="product-card">
-  <div class="thumb" aria-hidden="true"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg></div>
+  <div class="thumb" aria-hidden="true" style="background-image:linear-gradient(135deg,#e6eef9,#d2e0f3), url('/assets/images/product-de-mineralization-water-plant.jpg')"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg></div>
   <div class="body">
     <span class="tag">Industrial</span>
     <h3>De-Mineralization Water Plant</h3>
@@ -129,7 +129,7 @@
     <a href="product-de-mineralization-water-plant.html" class="link">Read specification &rarr;</a>
   </div>
 </article><article class="product-card">
-  <div class="thumb" aria-hidden="true"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg></div>
+  <div class="thumb" aria-hidden="true" style="background-image:linear-gradient(135deg,#e6eef9,#d2e0f3), url('/assets/images/product-swimming-pool-filtration.jpg')"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg></div>
   <div class="body">
     <span class="tag">Industrial</span>
     <h3>Swimming Pool Filtration</h3>
@@ -404,6 +404,62 @@
       if (e.touches && e.touches[0]) handleMove(e.touches[0].clientX, e.touches[0].clientY);
     }, {passive:true});
     gallery.addEventListener('touchend', resetTiles);
+  })();
+
+  // 3D mouse-tracked tilt for cards (segment cards on homepage)
+  (function(){
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var tiltCards = document.querySelectorAll('.tilt-card');
+    if (!tiltCards.length) return;
+    tiltCards.forEach(function(card){
+      var rect;
+      card.addEventListener('mouseenter', function(){ rect = card.getBoundingClientRect(); });
+      card.addEventListener('mousemove', function(e){
+        if (!rect) rect = card.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width;
+        var y = (e.clientY - rect.top) / rect.height;
+        var rotateY = (x - 0.5) * 14;
+        var rotateX = (0.5 - y) * 14;
+        card.style.transform = 'perspective(800px) rotateX(' + rotateX.toFixed(2) + 'deg) rotateY(' + rotateY.toFixed(2) + 'deg) scale(1.03)';
+        card.style.setProperty('--shine-x', (x * 100).toFixed(1) + '%');
+        card.style.setProperty('--shine-y', (y * 100).toFixed(1) + '%');
+      });
+      card.addEventListener('mouseleave', function(){
+        card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
+      });
+    });
+  })();
+
+  // Scroll-linked 3D parallax depth for the hero (homepage only)
+  (function(){
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var hero = document.querySelector('.hero');
+    if (!hero) return;
+    var caustics = document.querySelector('.hero-caustics');
+    var bubbles = document.querySelector('.hero-bubbles');
+    var flow = document.querySelector('.hero-flow');
+    var galleryCanvas = document.querySelector('.hero-gallery');
+    var ticking = false;
+
+    function update(){
+      var heroHeight = hero.offsetHeight;
+      var scrolled = window.scrollY;
+      var progress = Math.min(Math.max(scrolled / heroHeight, 0), 1);
+
+      if (caustics) caustics.style.transform = 'translateY(' + (progress * 60).toFixed(1) + 'px)';
+      if (bubbles) bubbles.style.transform = 'translateY(' + (progress * -40).toFixed(1) + 'px)';
+      if (flow) flow.style.transform = 'translateY(' + (progress * 30).toFixed(1) + 'px)';
+      if (galleryCanvas) {
+        var rot = progress * 6;
+        var lift = progress * -24;
+        galleryCanvas.style.transform = 'perspective(1200px) rotateX(' + rot.toFixed(2) + 'deg) translateY(' + lift.toFixed(1) + 'px)';
+      }
+      ticking = false;
+    }
+    function onScroll(){
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
   })();
 </script>
 </body>
